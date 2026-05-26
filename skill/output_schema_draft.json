@@ -1,0 +1,55 @@
+{
+  "mock_schema_name": "mock_flink_review_output_schema_draft",
+  "mock_schema_version": "0.1.0",
+  "summary": {
+    "task_name": "string",
+    "review_scope": "string",
+    "material_files": [
+      "string"
+    ],
+    "overall_note": "string"
+  },
+  "findings": [
+    {
+      "risk_type": "string",
+      "risk_level": "high | medium | low",
+      "description": "string",
+      "evidence": [
+        "string"
+      ],
+      "referenced_topics": [
+        "string"
+      ],
+      "referenced_tables": [
+        "string"
+      ],
+      "referenced_fields": [
+        "string"
+      ],
+      "needs_human_confirmation": true,
+      "suggested_action": "string"
+    }
+  ],
+  "test_suggestions": [
+    {
+      "test_name": "string",
+      "purpose": "string",
+      "input_case": "string",
+      "expected_observation": "string"
+    }
+  ],
+  "human_confirmation_items": [
+    {
+      "item": "string",
+      "reason": "string",
+      "suggested_owner": "business | data_owner | platform_owner | downstream_owner | reviewer"
+    }
+  ],
+  "reusable_asset_candidates": [
+    {
+      "asset_type": "check_item | prompt_rule | test_case | schema_field | review_pattern",
+      "asset_name": "string",
+      "reason": "string"
+    }
+  ]
+}
