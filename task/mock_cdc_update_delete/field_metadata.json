@@ -1,0 +1,112 @@
+{
+  "mock_task_name": "mock_cdc_update_delete",
+  "mock_description": "Mock field metadata for CDC update/delete realtime processing review.",
+  "mock_sources": [
+    {
+      "mock_object_name": "mock_cdc_order_events",
+      "mock_object_type": "mock_kafka_source",
+      "mock_fields": [
+        {
+          "mock_field_name": "mock_event_id",
+          "mock_field_type": "STRING",
+          "mock_nullable": false,
+          "mock_description": "Mock CDC event identifier."
+        },
+        {
+          "mock_field_name": "mock_order_id",
+          "mock_field_type": "STRING",
+          "mock_nullable": false,
+          "mock_description": "Mock business primary key for order state."
+        },
+        {
+          "mock_field_name": "mock_user_id",
+          "mock_field_type": "STRING",
+          "mock_nullable": true,
+          "mock_description": "Mock user identifier."
+        },
+        {
+          "mock_field_name": "mock_status",
+          "mock_field_type": "STRING",
+          "mock_nullable": true,
+          "mock_description": "Mock order status after CDC change."
+        },
+        {
+          "mock_field_name": "mock_amount",
+          "mock_field_type": "DECIMAL(18,2)",
+          "mock_nullable": true,
+          "mock_description": "Mock order amount after CDC change."
+        },
+        {
+          "mock_field_name": "mock_op",
+          "mock_field_type": "STRING",
+          "mock_nullable": false,
+          "mock_allowed_values": [
+            "c",
+            "u",
+            "d"
+          ],
+          "mock_description": "Mock CDC operation type: create, update, delete."
+        },
+        {
+          "mock_field_name": "mock_event_time",
+          "mock_field_type": "TIMESTAMP(3)",
+          "mock_nullable": false,
+          "mock_description": "Mock source event time."
+        },
+        {
+          "mock_field_name": "mock_ingest_time",
+          "mock_field_type": "TIMESTAMP(3)",
+          "mock_nullable": false,
+          "mock_description": "Mock ingestion time."
+        }
+      ]
+    }
+  ],
+  "mock_sinks": [
+    {
+      "mock_object_name": "mock_order_state",
+      "mock_object_type": "mock_upsert_kafka_sink",
+      "mock_primary_key": [
+        "mock_order_id"
+      ],
+      "mock_fields": [
+        {
+          "mock_field_name": "mock_order_id",
+          "mock_field_type": "STRING",
+          "mock_nullable": false,
+          "mock_description": "Mock business primary key."
+        },
+        {
+          "mock_field_name": "mock_user_id",
+          "mock_field_type": "STRING",
+          "mock_nullable": true,
+          "mock_description": "Latest mock user identifier."
+        },
+        {
+          "mock_field_name": "mock_status",
+          "mock_field_type": "STRING",
+          "mock_nullable": true,
+          "mock_description": "Latest mock order status."
+        },
+        {
+          "mock_field_name": "mock_amount",
+          "mock_field_type": "DECIMAL(18,2)",
+          "mock_nullable": true,
+          "mock_description": "Latest mock order amount."
+        },
+        {
+          "mock_field_name": "mock_last_event_id",
+          "mock_field_type": "STRING",
+          "mock_nullable": true,
+          "mock_description": "Last mock CDC event identifier applied by SQL."
+        },
+        {
+          "mock_field_name": "mock_last_event_time",
+          "mock_field_type": "TIMESTAMP(3)",
+          "mock_nullable": true,
+          "mock_description": "Last mock CDC event time applied by SQL."
+        }
+      ]
+    }
+  ]
+}

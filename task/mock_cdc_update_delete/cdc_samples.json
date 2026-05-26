@@ -1,0 +1,65 @@
+{
+  "mock_task_name": "mock_cdc_update_delete",
+  "mock_samples": [
+    {
+      "mock_case_id": "mock_case_001_create",
+      "mock_source_object": "mock_cdc_order_events",
+      "mock_event": {
+        "mock_event_id": "mock_evt_001",
+        "mock_order_id": "mock_order_1001",
+        "mock_user_id": "mock_user_01",
+        "mock_status": "mock_created",
+        "mock_amount": "19.90",
+        "mock_op": "c",
+        "mock_event_time": "2026-05-26 09:00:00.000",
+        "mock_ingest_time": "2026-05-26 09:00:01.000"
+      },
+      "mock_expected_note": "mock_order_1001 should appear in mock_order_state."
+    },
+    {
+      "mock_case_id": "mock_case_002_update",
+      "mock_source_object": "mock_cdc_order_events",
+      "mock_event": {
+        "mock_event_id": "mock_evt_002",
+        "mock_order_id": "mock_order_1001",
+        "mock_user_id": "mock_user_01",
+        "mock_status": "mock_paid",
+        "mock_amount": "19.90",
+        "mock_op": "u",
+        "mock_event_time": "2026-05-26 09:01:00.000",
+        "mock_ingest_time": "2026-05-26 09:01:01.000"
+      },
+      "mock_expected_note": "mock_order_1001 should be updated to mock_paid."
+    },
+    {
+      "mock_case_id": "mock_case_003_delete",
+      "mock_source_object": "mock_cdc_order_events",
+      "mock_event": {
+        "mock_event_id": "mock_evt_003",
+        "mock_order_id": "mock_order_1001",
+        "mock_user_id": null,
+        "mock_status": null,
+        "mock_amount": null,
+        "mock_op": "d",
+        "mock_event_time": "2026-05-26 09:02:00.000",
+        "mock_ingest_time": "2026-05-26 09:02:01.000"
+      },
+      "mock_expected_note": "mock_order_1001 should be deleted or marked as mock_deleted."
+    },
+    {
+      "mock_case_id": "mock_case_004_late_update",
+      "mock_source_object": "mock_cdc_order_events",
+      "mock_event": {
+        "mock_event_id": "mock_evt_004",
+        "mock_order_id": "mock_order_1001",
+        "mock_user_id": "mock_user_01",
+        "mock_status": "mock_shipped",
+        "mock_amount": "19.90",
+        "mock_op": "u",
+        "mock_event_time": "2026-05-26 09:01:30.000",
+        "mock_ingest_time": "2026-05-26 09:03:00.000"
+      },
+      "mock_expected_note": "mock late update should not revive a deleted mock order without an explicit policy."
+    }
+  ]
+}
